@@ -1,0 +1,55 @@
+﻿
+<div class="text-center">
+    <h2 class="display-4">Cálculo de IR Nicaragua</h1>    
+</div>
+
+    <div class="row mt-5">
+        <div class="col-sm">
+            <form asp-controller="Home" asp-action="CalcularDeducciones" id="formulario"
+                data-ajax="true" 
+                data-ajax-method="POST"
+                data-ajax-mode="replace" 
+                data-ajax-update="#tabla_resultado"                
+                data-ajax-success="CalculoGenerado"
+                data-ajax-failure ="CalculoErroneo"
+            >
+                <div class="mb-3">
+                    <label class="form-label">Tipo salario a calcular </label>
+                    <select class="form-control" aria-label="Default select example" name="tipo_calculo">  
+                        <option value="">** Seleccione una opción **</option>
+                        <option value="0">Mensual</option>
+                        <option value="1">Anual</option>
+                    </select>            
+                </div>        
+                <div class="mb-3">
+                    <label class="form-label">Monto salario</label>
+                    <input type="text" class="form-control"  placeholder="Ingrese su salario" name="salario" required />
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Calcular" class="btn btn-success">
+                    <button type="button" class="btn btn-secondary" onclick="Limpiar()">Limpiar</button>
+                </div>     
+            </form>
+        </div>
+        <div class="col-sm">
+            <div id="tabla_resultado"></div>
+        </div>
+    </div>
+
+
+<script>
+    function CalculoGenerado(respuesta) { console.log('cálculo correcto') }
+    function CalculoErroneo(respuesta) { console.log(respuesta) }
+
+    function Limpiar()
+    {
+        document.querySelector("[name='salario']").value = '';
+        document.querySelector("[name='tipo_calculo']").selectedIndex = 0;
+
+        if(document.querySelector("#tabla_resultado table") != null || document.querySelector("#tabla_resultado table") != undefined)
+        {
+            document.querySelectorAll('.contenedor_monto').forEach((elemento,indice) => { elemento.innerHTML = "0.00"; });
+            document.querySelector("#contenedor_error ul").innerHTML = '';
+        }
+    }
+</script>

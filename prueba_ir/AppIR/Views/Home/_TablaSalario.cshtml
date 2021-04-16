@@ -1,0 +1,44 @@
+@model Entidad.ResultadoCalculoDeduciones
+
+<table class="table">
+    <thead class="table-light">
+        <tr>
+            <th  scope="col"><span></span></th>
+            <th  scope="col"><span>Mensual</span></th>
+            <th  scope="col"><span>Quincenal</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th  scope="row"><span>Sueldo</span></th>
+            <td><span>C$ </span><span class="contenedor_monto text-primary">@((Model.salario_bruto_anual / 12).ToString("#,##0.00"))</span></td>
+            <td><span>C$ </span><span class="contenedor_monto text-primary">@((Model.salario_bruto_anual / 24).ToString("#,##0.00"))</span></td>
+        </tr>       
+        <tr>
+            <th  scope="row"><span>(-) INSS</span></th>
+            <td><span>C$ </span><span class="contenedor_monto text-primary">@((Model.inss_anual / 12).ToString("#,##0.00"))</span></td>
+            <td><span>C$ </span><span class="contenedor_monto text-primary">@((Model.inss_anual / 24).ToString("#,##0.00"))</span></td>                        
+        </tr>       
+        <tr>
+            <th  scope="row"><span>(-) IR</span></th>
+            <td><span>C$ </span><span class="contenedor_monto text-primary">@((Model.ir_anual / 12).ToString("#,##0.00"))</span></td>
+            <td><span>C$ </span><span class="contenedor_monto text-primary">@((Model.ir_anual / 24).ToString("#,##0.00"))</span></td>
+        </tr>       
+        <tr>
+            <th  scope="row"><span>Resultado</span></th>
+            <td><span>C$ </span><span class="contenedor_monto text-success">@((Model.salario_anual / 12).ToString("#,##0.00"))</span></td>
+            <td><span>C$ </span><span class="contenedor_monto text-success">@((Model.salario_anual / 24).ToString("#,##0.00"))</span></td>
+        </tr>                                                                   
+    </tbody>
+</table>
+<div id="contenedor_error">
+    @if(!string.IsNullOrEmpty(Model.error_mensaje))
+    {
+        <ul class="text-danger">
+            @foreach (var mensaje in Model.error_mensaje.Split('.'))
+            {
+                <li class="text-danger">@mensaje</li>            
+            }
+        </ul>
+    }
+</div>

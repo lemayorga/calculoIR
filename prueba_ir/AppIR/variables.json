@@ -1,0 +1,40 @@
+{
+    "deduccion_INSS": 6.25,
+    "tablaIR":[
+        {
+            "desde": 1,
+            "hasta": 100000,
+            "impuesto": 0,
+            "porcentaje": 0,
+            "exceso": 0
+        },
+        {
+            "desde": 100001,
+            "hasta": 200000,
+            "impuesto": 0,
+            "porcentaje": 15,
+            "exceso": 100000
+        },
+        {
+            "desde": 200001,
+            "hasta": 350000,
+            "impuesto": 15000,
+            "porcentaje": 20,
+            "exceso": 200000
+        },
+        {
+            "desde": 350001,
+            "hasta": 500000,
+            "impuesto": 45000,
+            "porcentaje": 25,
+            "exceso": 350000
+        },
+        {
+            "desde": 500001,
+            "hasta": null,
+            "impuesto": 82500,
+            "porcentaje": 30,
+            "exceso": 500000
+        }
+    ]    
+}
